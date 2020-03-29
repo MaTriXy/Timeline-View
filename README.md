@@ -8,15 +8,16 @@ Android Timeline View Library (Using RecyclerView) is simple implementation used
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/vipulasri/Timeline-View/blob/master/LICENSE)
 
 ### Badges/Featured In
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Timeline--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2923) [![Android Gems](http://www.android-gems.com/badge/vipulasri/Timeline-View.svg)](http://www.android-gems.com/lib/vipulasri/Timeline-View?lib_id=773) [![AndroidDev Digest](https://img.shields.io/badge/AndroidDev%20Digest-%23126-blue.svg)](https://www.androiddevdigest.com/digest-126/) 
+[![Timeline View](https://www.appbrain.com/stats/libraries/shield/timeline_view.svg)](https://www.appbrain.com/stats/libraries/details/timeline_view/timeline-view)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Timeline--View-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2923) 
+[![AndroidWeekly](https://androidweekly.net/issues/issue-395/badge)](https://androidweekly.net/issues/issue-395) 
+[![AndroidDev Digest](https://img.shields.io/badge/AndroidDev%20Digest-%23126-blue.svg)](https://www.androiddevdigest.com/digest-126/) 
 
 ![showcase](https://github.com/vipulasri/Timeline-View/blob/master/art/showcase.png)
 
 ## Sample Project
 
-You can download the latest sample APK from this repo here: [https://github.com/vipulasri/Timeline-View/tree/master/apk](https://github.com/vipulasri/Timeline-View/tree/master/apk)
-
-For information : checkout [Sample App Code](https://github.com/vipulasri/Timeline-View/tree/master/app) in repository.
+For information : checkout [Example Screen Code](https://github.com/vipulasri/Timeline-View/tree/master/app/src/main/java/com/github/vipulasri/timelineview/sample/example) in repository.
 
 ### Download
 
@@ -30,36 +31,13 @@ For information : checkout [Sample App Code](https://github.com/vipulasri/Timeli
 
 ``` gradle
 dependencies {
-    compile 'com.github.vipulasri:timelineview:1.0.6'
+    implementation 'com.github.vipulasri:timelineview:1.1.4'
 }
 ```
 
-**Using Maven**
-
-``` maven
-<dependency>
-    <groupId>com.github.vipulasri</groupId>
-    <artifactId>timelineview</artifactId>
-    <version>1.0.6</version>
-    <type>pom</type>
-</dependency>
-```
-
-
-#### Manual:
-**Manual - Using [Android Studio](https://developer.android.com/sdk/installing/studio.html):**
- * Download the library folder and import to your root application folder.
-You can manually achieve this step with 3 steps:
-    1. Paste the folder library into your application at the same level of your app, build and gradle folder
-    2. Add to your settings.gradle file the following code line:
-    "include ':app', ':timelineview'"
-    3. Rebuild the project
- * File → Project Structure → in Modules section click on "app" → Click on tab "Dependecies" → Click on the green plus → Module Dependecy → Select ":library"
- * Done
-
 ### What's New
 
-See the project's Releases page for a list of versions with their changelogs.
+See the project's Releases page for a list of versions with their change logs.
 
 ### [View Releases](https://github.com/vipulasri/Timeline-View/releases)
 
@@ -70,24 +48,26 @@ If you Watch this repository, GitHub will send you an email every time I publish
 
 ``` java
 <com.github.vipulasri.timelineview.TimelineView
-    android:id="@+id/time_marker"
+    android:id="@+id/timeline"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     app:markerSize="20dp"
-    app:lineSize="2dp"
-    app:line="@color/colorPrimary"/>
+    app:lineWidth="2dp"
+    app:startLineColor="@color/colorPrimary"
+    app:endLineColor="@color/colorPrimary"/>
 ```
 
 ##### Line Padding around marker
 
 ``` java
 <com.github.vipulasri.timelineview.TimelineView
-    android:id="@+id/time_marker"
+    android:id="@+id/timeline"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     app:markerSize="20dp"
-    app:lineSize="2dp"
-    app:line="@color/colorPrimary"
+    app:lineWidth="2dp"
+    app:startLineColor="@color/colorPrimary"
+    app:endLineColor="@color/colorPrimary"
     app:linePadding="5dp"/>
 ```
 
@@ -113,12 +93,37 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>sets the marker in center of line if `true`</td>
     </tr>
     <tr>
-        <td>app:line="@color/primarColor"</td>
-        <td>Dark Grey Line</td>
-        <td>sets line color</td>
+        <td>app:markerPaddingLeft="0dp"</td>
+        <td>0dp</td>
+        <td>sets the marker left padding, applicable only with horizontal orientation</td>
     </tr>
-     <tr>
-        <td>app:lineSize="2dp"</td>
+    <tr>
+        <td>app:markerPaddingTop="0dp"</td>
+        <td>0dp</td>
+        <td>sets the marker top padding, applicable only with vertical orientation</td>
+    </tr>
+    <tr>
+        <td>app:markerPaddingRight="0dp"</td>
+        <td>0dp</td>
+        <td>sets the marker right padding, applicable only with horizontal orientation</td>
+    </tr>
+    <tr>
+        <td>app:markerPaddingBottom="0dp"</td>
+        <td>0dp</td>
+        <td>sets the marker bottom padding, applicable only with vertical orientation</td>
+    </tr>
+    <tr>
+        <td>app:startLineColor="@color/primarColor"</td>
+        <td>Dark Grey Line</td>
+        <td>sets start line color</td>
+    </tr>
+    <tr>
+        <td>app:endLineColor="@color/primarColor"</td>
+        <td>Dark Grey Line</td>
+        <td>sets end line color</td>
+    </tr>
+    <tr>
+        <td>app:lineWidth="2dp"</td>
         <td>2dp</td>
         <td>sets line width</td>
     </tr>
@@ -131,11 +136,26 @@ If you Watch this repository, GitHub will send you an email every time I publish
         <td>app:linePadding="5dp"</td>
         <td>0dp</td>
         <td>sets line padding around marker</td>
-        </tr>
+     </tr>
+     <tr>
+         <td>app:lineStyle="dash"</td>
+         <td>normal</td>
+         <td>sets line style ie `normal` or `dashed`</td>
+     </tr>
+     <tr>
+         <td>app:lineStyleDashGap="4dp"</td>
+         <td>4dp</td>
+         <td>sets line dash gap</td>
+     </tr>
+     <tr>
+         <td>app:lineStyleDashLength="8dp"</td>
+         <td>8dp</td>
+         <td>sets line dash length</td>
+     </tr>
     </table>
  
 * RecyclerView Holder : 
-   Your `RecyclerViewHolder` should have an extra paramenter in constructor i.e viewType from `onCreateViewHolder`. You would also have to call the method `initLine(viewType)` in constructor definition.
+   Your `RecyclerViewHolder` should have an extra parameter in constructor i.e viewType from `onCreateViewHolder`. You would also have to call the method `initLine(viewType)` in constructor definition.
  
 ``` java
 
@@ -144,7 +164,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
 
         public TimeLineViewHolder(View itemView, int viewType) {
             super(itemView);
-            mTimelineView = (TimelineView) itemView.findViewById(R.id.time_marker);
+            mTimelineView = (TimelineView) itemView.findViewById(R.id.timeline);
             mTimelineView.initLine(viewType);
         }
     }
@@ -158,7 +178,7 @@ If you Watch this repository, GitHub will send you an email every time I publish
 
     @Override
     public int getItemViewType(int position) {
-        return TimelineView.getTimeLineViewType(position,getItemCount());
+        return TimelineView.getTimeLineViewType(position, getItemCount());
     }
 
 ```
@@ -176,6 +196,8 @@ If you Watch this repository, GitHub will send you an email every time I publish
 
 ## Apps that use this library
 
+* [ALL IPO News](https://play.google.com/store/apps/details?id=com.appbootup.ipo.news)
+
 If you're using this library in your app and you'd like to list it here,
 Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests](https://github.com/vipulasri/Timeline-View/pulls) or [issues](https://github.com/vipulasri/Timeline-View/issues).
 
@@ -184,7 +206,7 @@ Please let me know via [email](mailto:vipulasri.2007@gmail.com), [pull requests]
 ## License
 
 
-    Copyright 2017 Vipul Asri
+    Copyright 2018 Vipul Asri
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
